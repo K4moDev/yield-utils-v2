@@ -50,6 +50,9 @@ describe("TimeLock", async function () {
 
   beforeEach(async () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ed75dc2 (fix: bastard merge)
     target1 = (await deployContract(schedulerAcc, ERC20MockArtifact, [
       "Target1",
       "TG1",
@@ -64,6 +67,7 @@ describe("TimeLock", async function () {
     ])) as TimeLock;
     ({ timestamp } = await ethers.provider.getBlock("latest"));
   });
+<<<<<<< HEAD
 =======
     target1 = (await deployContract(ownerAcc, ERC20MockArtifact, ['Target1', 'TG1'])) as ERC20
     target2 = (await deployContract(ownerAcc, ERC20MockArtifact, ['Target2', 'TG2'])) as ERC20
@@ -71,6 +75,8 @@ describe("TimeLock", async function () {
     ;({ timestamp } = await ethers.provider.getBlock('latest'))
   })
 >>>>>>> 6624323 (draft: EmergencyBrake)
+=======
+>>>>>>> ed75dc2 (fix: bastard merge)
 
   it("doesn't allow governance changes to scheduler", async () => {
     await expect(timelock.setDelay(0)).to.be.revertedWith("Access denied");
