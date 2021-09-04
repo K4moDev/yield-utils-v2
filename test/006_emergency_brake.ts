@@ -30,7 +30,7 @@ describe("EmergencyBrake", async function () {
   const state = {
     UNPLANNED: 0,
     PLANNED: 1,
-    EXECUTED: 2,
+    EXECUTED: 2
   };
 
   let MINT: string
@@ -52,15 +52,15 @@ describe("EmergencyBrake", async function () {
 
     contact1 = (await deployContract(plannerAcc, RestrictedERC20MockArtifact, [
       "Contact1",
-      "CT1",
+      "CT1"
     ])) as ERC20;
     contact2 = (await deployContract(plannerAcc, RestrictedERC20MockArtifact, [
       "Contact2",
-      "CT2",
+      "CT2"
     ])) as ERC20;
     brake = (await deployContract(plannerAcc, EmergencyBrakeArtifact, [
       planner,
-      executor,
+      executor
     ])) as EmergencyBrake;
 
     MINT = id(contact1.interface, "mint(address,uint256)");
@@ -74,9 +74,16 @@ describe("EmergencyBrake", async function () {
     await contact1.grantRole(ROOT, brake.address);
     await contact2.grantRole(ROOT, brake.address);
 
+<<<<<<< HEAD
     permissions = [
       { contact: contact1.address, signatures: [MINT, BURN] },
       { contact: contact2.address, signatures: [TRANSFER, APPROVE] },
+=======
+    contacts = [contact1.address, contact2.address];
+    signatures = [
+      [MINT, BURN],
+      [TRANSFER, APPROVE]
+>>>>>>> 8d79837 (Format)
     ];
   });
 
@@ -174,9 +181,15 @@ describe("EmergencyBrake", async function () {
     });
 
     it("can't revoke non-existing permissions", async () => {
+<<<<<<< HEAD
       const permissions = [
         { contact: contact1.address, signatures: [MINT, BURN] },
         { contact: contact2.address, signatures: [MINT, BURN] },
+=======
+      const nonExisting = [
+        [MINT, BURN],
+        [MINT, BURN]
+>>>>>>> 8d79837 (Format)
       ];
       await brake.connect(plannerAcc).plan(target, permissions); // It can be planned, because permissions could be different at execution time
       await expect(

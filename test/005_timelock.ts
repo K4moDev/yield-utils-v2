@@ -57,17 +57,21 @@ describe("Timelock", async function () {
     target1 = (await deployContract(governorAcc, ERC20MockArtifact, [
 >>>>>>> 6b2ae46 (test: Timelock.sol)
       "Target1",
-      "TG1",
+      "TG1"
     ])) as ERC20;
     target2 = (await deployContract(governorAcc, ERC20MockArtifact, [
       "Target2",
+<<<<<<< HEAD
       "TG2",
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+      "TG2"
+>>>>>>> 8d79837 (Format)
     ])) as ERC20;
     timelock = (await deployContract(schedulerAcc, TimeLockArtifact, [
       scheduler,
-      executor,
+      executor
     ])) as TimeLock;
     ({ timestamp } = await ethers.provider.getBlock("latest"));
     now = BigNumber.from(timestamp);
@@ -148,10 +152,105 @@ describe("Timelock", async function () {
     ];
     const txHash = await timelock.callStatic.propose(functionCalls);
 
+<<<<<<< HEAD
     await expect(await timelock.propose(functionCalls)).to.emit(
       timelock,
       "Proposed"
     );
+=======
+  it("only the scheduler can cancel", async () => {
+    const txHash =
+      "0x33fd4732e64f236e5182740fa5473c496f60cecc294538c44897d62be999d1ed";
+    await expect(
+      timelock.connect(executorAcc).cancel(txHash)
+    ).to.be.revertedWith("Access denied");
+  });
+
+  it("doesn't allow to cancel if not scheduled", async () => {
+    const txHash =
+      "0x33fd4732e64f236e5182740fa5473c496f60cecc294538c44897d62be999d1ed";
+    await expect(
+      timelock.connect(schedulerAcc).cancel(txHash)
+    ).to.be.revertedWith("Transaction hasn't been scheduled.");
+  });
+
+  it("only the executor can execute", async () => {
+    const targets = [target1.address];
+    const data = [target1.interface.encodeFunctionData("mint", [scheduler, 1])];
+    await expect(
+      timelock.connect(schedulerAcc).execute(targets, data)
+    ).to.be.revertedWith("Access denied");
+  });
+
+  it("doesn't allow to execute before eta", async () => {
+    const targets = [target1.address];
+    const data = [target1.interface.encodeFunctionData("mint", [scheduler, 1])];
+    const eta = now.add(await timelock.delay()).add(100);
+    await timelock.connect(schedulerAcc).schedule(targets, data, eta);
+    await expect(
+      timelock.connect(executorAcc).execute(targets, data)
+    ).to.be.revertedWith("ETA not reached");
+  });
+
+  it("doesn't allow to execute after grace period", async () => {
+    const targets = [target1.address];
+    const data = [target1.interface.encodeFunctionData("mint", [scheduler, 1])];
+    const eta = now.add(await timelock.delay()).add(100);
+
+    await timelock.connect(schedulerAcc).schedule(targets, data, eta);
+
+    const snapshotId = await ethers.provider.send("evm_snapshot", []);
+    await ethers.provider.send("evm_mine", [
+      eta
+        .add(await timelock.GRACE_PERIOD())
+        .add(100)
+        .toNumber()
+    ]);
+
+    await expect(
+      timelock.connect(executorAcc).execute(targets, data)
+    ).to.be.revertedWith("Transaction is stale");
+
+    await ethers.provider.send("evm_revert", [snapshotId]);
+  });
+
+  it("doesn't allow to execute to a non-contract", async () => {
+    const targets = [scheduler];
+    const data = [target1.interface.encodeFunctionData("mint", [scheduler, 1])];
+    const eta = now.add(await timelock.delay()).add(100);
+
+    await timelock.connect(schedulerAcc).schedule(targets, data, eta);
+
+    const snapshotId = await ethers.provider.send("evm_snapshot", []);
+    await ethers.provider.send("evm_mine", [eta.add(100).toNumber()]);
+
+    await expect(
+      timelock.connect(executorAcc).execute(targets, data)
+    ).to.be.revertedWith("Call to a non-contract");
+
+    await ethers.provider.send("evm_revert", [snapshotId]);
+  });
+
+  it("doesn't allow to execute if not scheduled", async () => {
+    const targets = [target1.address];
+    const data = [target1.interface.encodeFunctionData("mint", [scheduler, 1])];
+    await expect(
+      timelock.connect(executorAcc).execute(targets, data)
+    ).to.be.revertedWith("Transaction hasn't been scheduled.");
+  });
+
+  it("schedules a transaction", async () => {
+    const targets = [target1.address];
+    const data = [target1.interface.encodeFunctionData("mint", [scheduler, 1])];
+    const eta = now.add(await timelock.delay()).add(100);
+    const txHash = await timelock
+      .connect(schedulerAcc)
+      .callStatic.schedule(targets, data, eta);
+
+    await expect(
+      await timelock.connect(schedulerAcc).schedule(targets, data, eta)
+    ).to.emit(timelock, "Scheduled");
+>>>>>>> 8d79837 (Format)
     //      .withArgs(txHash, targets, data, eta)
     const proposal = await timelock.proposals(txHash);
     expect(proposal.state).to.equal(STATE.PROPOSED);
@@ -162,6 +261,7 @@ describe("Timelock", async function () {
     let txHash: string;
 
     beforeEach(async () => {
+<<<<<<< HEAD
       functionCalls = [
         {
           target: target1.address,
@@ -171,11 +271,20 @@ describe("Timelock", async function () {
           target: target2.address,
           data: target1.interface.encodeFunctionData("approve", [governor, 1]),
         },
+=======
+      ({ timestamp } = await ethers.provider.getBlock("latest"));
+      now = BigNumber.from(timestamp);
+      targets = [target1.address, target2.address];
+      data = [
+        target1.interface.encodeFunctionData("mint", [scheduler, 1]),
+        target2.interface.encodeFunctionData("approve", [scheduler, 1])
+>>>>>>> 8d79837 (Format)
       ];
       txHash = await timelock.callStatic.propose(functionCalls);
       await timelock.propose(functionCalls);
     });
 
+<<<<<<< HEAD
     it("doesn't allow to propose the same transaction twice", async () => {
       await expect(timelock.propose(functionCalls)).to.be.revertedWith(
         "Already proposed."
@@ -215,6 +324,22 @@ describe("Timelock", async function () {
       await expect(await timelock.approve(txHash)).to.emit(
         timelock,
         "Approved"
+=======
+    it("doesn't allow to schedule the same transaction twice", async () => {
+      const targets = [target1.address];
+      const data = [
+        target1.interface.encodeFunctionData("mint", [scheduler, 1])
+      ];
+      await expect(
+        timelock.connect(schedulerAcc).schedule(targets, data, eta)
+      ).to.be.revertedWith("Transaction already scheduled.");
+    });
+
+    it("cancels a transaction", async () => {
+      await expect(await timelock.connect(schedulerAcc).cancel(txHash)).to.emit(
+        timelock,
+        "Cancelled"
+>>>>>>> 8d79837 (Format)
       );
       //        .withArgs(txHash, targets, data, eta)
       expect(await timelock.proposals(txHash)).not.equal(0);
