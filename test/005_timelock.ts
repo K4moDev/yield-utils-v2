@@ -101,7 +101,8 @@ describe("Timelock", async function () {
 =======
     ])) as ERC20;
     timelock = (await deployContract(governorAcc, TimelockArtifact, [
-      governor, executor
+      governor,
+      executor,
     ])) as Timelock;
     ({ timestamp } = await ethers.provider.getBlock("latest"));
     now = BigNumber.from(timestamp);
