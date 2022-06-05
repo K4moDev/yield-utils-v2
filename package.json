@@ -1,6 +1,10 @@
 {
   "name": "@yield-protocol/utils-v2",
+<<<<<<< HEAD
   "version": "2.6.0-rc.1",
+=======
+  "version": "2.5.3",
+>>>>>>> 6b2482e (npm: bump)
   "description": "Yield v2 utility contracts",
   "author": "Yield Inc.",
   "files": [
