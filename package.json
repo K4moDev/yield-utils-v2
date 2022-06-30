@@ -2,6 +2,7 @@
   "name": "@yield-protocol/utils-v2",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "2.6.0-rc.1",
 =======
   "version": "2.5.3",
@@ -9,6 +10,9 @@
 =======
   "version": "2.6.0",
 >>>>>>> 1ecdadc (npm: published as 2.6.0)
+=======
+  "version": "2.6.0-rc.1",
+>>>>>>> bade29f (npm: bump)
   "description": "Yield v2 utility contracts",
   "author": "Yield Inc.",
   "files": [
