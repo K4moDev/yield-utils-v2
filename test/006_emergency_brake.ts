@@ -30,7 +30,11 @@ describe("EmergencyBrake", async function () {
   const state = {
     UNPLANNED: 0,
     PLANNED: 1,
+<<<<<<< HEAD
     EXECUTED: 2
+=======
+    EXECUTED: 2,
+>>>>>>> f82b46b (Revert "upgrade dependencies and fix error in CI")
   };
 
   let MINT: string;
@@ -52,6 +56,7 @@ describe("EmergencyBrake", async function () {
 
     contact1 = (await deployContract(plannerAcc, RestrictedERC20MockArtifact, [
       "Contact1",
+<<<<<<< HEAD
       "CT1"
     ])) as ERC20;
     contact2 = (await deployContract(plannerAcc, RestrictedERC20MockArtifact, [
@@ -61,6 +66,17 @@ describe("EmergencyBrake", async function () {
     brake = (await deployContract(plannerAcc, EmergencyBrakeArtifact, [
       planner,
       executor
+=======
+      "CT1",
+    ])) as ERC20;
+    contact2 = (await deployContract(plannerAcc, RestrictedERC20MockArtifact, [
+      "Contact2",
+      "CT2",
+    ])) as ERC20;
+    brake = (await deployContract(plannerAcc, EmergencyBrakeArtifact, [
+      planner,
+      executor,
+>>>>>>> f82b46b (Revert "upgrade dependencies and fix error in CI")
     ])) as EmergencyBrake;
 
     MINT = id(contact1.interface, "mint(address,uint256)");
@@ -75,6 +91,7 @@ describe("EmergencyBrake", async function () {
     await contact2.grantRole(ROOT, brake.address);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     permissions = [
       { contact: contact1.address, signatures: [MINT, BURN] },
       { contact: contact2.address, signatures: [TRANSFER, APPROVE] },
@@ -84,6 +101,11 @@ describe("EmergencyBrake", async function () {
       [MINT, BURN],
       [TRANSFER, APPROVE]
 >>>>>>> 8d79837 (Format)
+=======
+    permissions = [
+      { contact: contact1.address, signatures: [MINT, BURN] },
+      { contact: contact2.address, signatures: [TRANSFER, APPROVE] },
+>>>>>>> f82b46b (Revert "upgrade dependencies and fix error in CI")
     ];
   });
 
@@ -182,6 +204,7 @@ describe("EmergencyBrake", async function () {
 
     it("can't revoke non-existing permissions", async () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
       const permissions = [
         { contact: contact1.address, signatures: [MINT, BURN] },
         { contact: contact2.address, signatures: [MINT, BURN] },
@@ -190,6 +213,11 @@ describe("EmergencyBrake", async function () {
         [MINT, BURN],
         [MINT, BURN]
 >>>>>>> 8d79837 (Format)
+=======
+      const permissions = [
+        { contact: contact1.address, signatures: [MINT, BURN] },
+        { contact: contact2.address, signatures: [MINT, BURN] },
+>>>>>>> f82b46b (Revert "upgrade dependencies and fix error in CI")
       ];
       const txHash = await brake
         .connect(plannerAcc)
