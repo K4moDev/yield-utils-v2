@@ -5,6 +5,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "2.6.0-rc.1",
 =======
   "version": "2.5.3",
@@ -21,6 +22,9 @@
 =======
   "version": "2.6.2",
 >>>>>>> 546133b (fix: return zero as the default decimals)
+=======
+  "version": "2.6.3",
+>>>>>>> b8581e1 (Bump npm)
   "description": "Yield v2 utility contracts",
   "author": "Yield Inc.",
   "files": [
