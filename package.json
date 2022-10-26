@@ -6,6 +6,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "2.6.0-rc.1",
 =======
   "version": "2.5.3",
@@ -25,6 +26,9 @@
 =======
   "version": "2.6.3",
 >>>>>>> b8581e1 (Bump npm)
+=======
+  "version": "2.6.4-rc.0",
+>>>>>>> 8548bf7 (npm publish)
   "description": "Yield v2 utility contracts",
   "author": "Yield Inc.",
   "files": [
