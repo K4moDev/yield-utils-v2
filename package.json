@@ -8,6 +8,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "2.6.0-rc.1",
 =======
   "version": "2.5.3",
@@ -33,6 +34,9 @@
 =======
   "version": "2.6.4-rc.1",
 >>>>>>> 2bedd98 (don't add permissions that haven't been granted)
+=======
+  "version": "2.6.4-rc.2",
+>>>>>>> c17d20a (we can actually use dynamic arrays)
   "description": "Yield v2 utility contracts",
   "author": "Yield Inc.",
   "files": [
