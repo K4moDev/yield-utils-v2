@@ -9,6 +9,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "2.6.0-rc.1",
 =======
   "version": "2.5.3",
@@ -37,6 +38,9 @@
 =======
   "version": "2.6.4-rc.2",
 >>>>>>> c17d20a (we can actually use dynamic arrays)
+=======
+  "version": "2.6.4",
+>>>>>>> e43cfc5 (Allow `remit` of rewards)
   "description": "Yield v2 utility contracts",
   "author": "Yield Inc.",
   "files": [
