@@ -10,6 +10,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "2.6.0-rc.1",
 =======
   "version": "2.5.3",
@@ -41,6 +42,9 @@
 =======
   "version": "2.6.4",
 >>>>>>> e43cfc5 (Allow `remit` of rewards)
+=======
+  "version": "2.6.5",
+>>>>>>> 36269df (tested `remit`, changed `Claimed` event. npm publish)
   "description": "Yield v2 utility contracts",
   "author": "Yield Inc.",
   "files": [
