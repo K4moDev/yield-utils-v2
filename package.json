@@ -16,6 +16,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "2.6.0-rc.1",
 =======
   "version": "2.5.3",
@@ -65,11 +66,14 @@
 =======
   "version": "2.6.10",
 >>>>>>> 4f4f322 (npm bump)
+=======
+  "version": "2.6.11",
+>>>>>>> d4092e9 (export new path)
   "description": "Yield v2 utility contracts",
   "author": "Yield Inc.",
   "files": [
-    "contracts",
-    "!contracts/mocks"
+    "src",
+    "!src/mocks"
   ],
   "scripts": {
     "prepublishOnly": "npx tsdx build --tsconfig ./tsconfig-publish.json"
