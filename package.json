@@ -19,6 +19,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "2.6.0-rc.1",
 =======
   "version": "2.5.3",
@@ -77,6 +78,9 @@
 =======
   "version": "2.6.13",
 >>>>>>> bd1409a (error messages as arguments)
+=======
+  "version": "2.6.14",
+>>>>>>> 011895e (Single error messages better)
   "description": "Yield v2 utility contracts",
   "author": "Yield Inc.",
   "files": [
