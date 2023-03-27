@@ -17,6 +17,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "2.6.0-rc.1",
 =======
   "version": "2.5.3",
@@ -69,6 +70,9 @@
 =======
   "version": "2.6.11",
 >>>>>>> d4092e9 (export new path)
+=======
+  "version": "2.6.15",
+>>>>>>> 48ed9f0 (npm: 2.6.15)
   "description": "Yield v2 utility contracts",
   "author": "Yield Inc.",
   "files": [
