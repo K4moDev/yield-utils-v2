@@ -59,7 +59,11 @@ contract TokenUpgrade is AccessControl {
         if (address(tokensIn[tokenIn_].reverse) != address(0)) revert TokenInAlreadyRegistered(address(tokenIn_));
         if (address(tokensOut[tokenOut_].reverse) != address(0)) revert TokenOutAlreadyRegistered(address(tokenOut_));
 
+<<<<<<< HEAD
         uint96 ratio = tokenOut_.balanceOf(address(this)).wdiv(tokenIn_.totalSupply()).u96();
+=======
+        uint96 ratio = tokenOut_.balanceOf(address(this).wdiv(tokenIn_.totalSupply()).u96();
+>>>>>>> 92ea03d (Update src/token/TokenUpgrade.sol)
         uint256 tokenInBalance = tokenIn_.balanceOf(address(this));
         uint256 tokenOutBalance = tokenOut_.balanceOf(address(this));
         tokensIn[tokenIn_] = TokenIn(tokenOut_, ratio, tokenInBalance, merkleRoot_);
