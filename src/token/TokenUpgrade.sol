@@ -133,6 +133,12 @@ contract TokenUpgrade is AccessControl {
         if (address(tokenIn.reverse) == address(0)) revert TokenInNotRegistered(address(tokenIn_));
         IERC20 tokenOut_ = tokenIn.reverse;
 
+<<<<<<< HEAD
+=======
+        tokenIn_.safeTransferFrom(from, address(this), tokenInAmount);
+        uint256 tokenOutAmount = tokenInAmount.wmul(tokenIn.ratio);
+
+>>>>>>> 295722b (Update src/token/TokenUpgrade.sol)
         bytes32 leaf = keccak256(abi.encodePacked(from, tokenInAmount));
         bool isValidLeaf = MerkleProof.verify(proof, tokenIn.merkleRoot, leaf);
         if (!isValidLeaf) revert NotInMerkleTree();
