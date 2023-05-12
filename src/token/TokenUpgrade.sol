@@ -141,7 +141,7 @@ contract TokenUpgrade is AccessControl {
 
 >>>>>>> 295722b (Update src/token/TokenUpgrade.sol)
         bytes32 leaf = keccak256(abi.encodePacked(from, tokenInAmount));
-        bool isValidLeaf = MerkleProof.verify(proof, tokenIn.merkleRoot, leaf);
+        bool isValidLeaf = MerkleProof.verifyCalldata(proof, tokenIn.merkleRoot, leaf);
         if (!isValidLeaf) revert NotInMerkleTree();
 
         tokenIn_.safeTransferFrom(from, address(this), tokenInAmount);
