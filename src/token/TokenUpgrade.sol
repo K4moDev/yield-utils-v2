@@ -51,12 +51,25 @@ contract TokenUpgrade is AccessControl {
     error NotInMerkleTree();
 
     event Registered(
-        IERC20 indexed tokenIn, IERC20 indexed tokenOut, uint256 tokenInBalance, uint256 tokenOutBalance, uint96 ratio
+        IERC20 indexed tokenIn, 
+        IERC20 indexed tokenOut, 
+        uint256 tokenInBalance, 
+        uint256 tokenOutBalance, 
+        uint96 ratio, 
+        bytes32 merkleRoot
     );
     event Unregistered(
-        IERC20 indexed tokenIn, IERC20 indexed tokenOut, uint256 tokenInBalance, uint256 tokenOutBalance
+        IERC20 indexed tokenIn, 
+        IERC20 indexed tokenOut, 
+        uint256 tokenInBalance, 
+        uint256 tokenOutBalance
     );
-    event Upgraded(IERC20 indexed tokenIn, IERC20 indexed tokenOut, uint256 tokenInAmount, uint256 tokenOutAmount);
+    event Upgraded(
+        IERC20 indexed tokenIn, 
+        IERC20 indexed tokenOut, 
+        uint256 tokenInAmount, 
+        uint256 tokenOutAmount
+    );
     event Extracted(IERC20 indexed tokenIn, uint256 tokenInBalance);
     event Recovered(IERC20 indexed token, uint256 recovered);
 
@@ -100,7 +113,7 @@ contract TokenUpgrade is AccessControl {
         tokensIn[tokenIn_] = TokenIn(tokenOut_, ratio, tokenInBalance, merkleRoot_);
         tokensOut[tokenOut_] = TokenOut(tokenIn_, tokenOutBalance);
 
-        emit Registered(tokenIn_, tokenOut_, tokenInBalance, tokenOutBalance, ratio);
+        emit Registered(tokenIn_, tokenOut_, tokenInBalance, tokenOutBalance, ratio, merkleRoot_);
     }
 
     /// @dev Unregister a token to be replaced, and the token to replace it with. Send all related tokens to a given address.
@@ -167,12 +180,16 @@ contract TokenUpgrade is AccessControl {
         IERC20 tokenOut_ = tokenIn.reverse;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         tokenIn_.safeTransferFrom(from, address(this), tokenInAmount);
         uint256 tokenOutAmount = tokenInAmount.wmul(tokenIn.ratio);
 
 >>>>>>> 295722b (Update src/token/TokenUpgrade.sol)
         bytes32 leaf = keccak256(abi.encodePacked(from, tokenInAmount));
+=======
+        bytes32 leaf = keccak256(bytes.concat(keccak256(abi.encode(from, tokenInAmount))));
+>>>>>>> a764145 (fix: leaf generation and register event)
         if (isClaimed[leaf]) revert AlreadyClaimed();
         isClaimed[leaf] = true;
         bool isValidLeaf = MerkleProof.verifyCalldata(proof, tokenIn.merkleRoot, leaf);
