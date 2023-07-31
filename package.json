@@ -22,6 +22,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "2.6.0-rc.1",
 =======
   "version": "2.5.3",
@@ -89,6 +90,9 @@
 =======
   "version": "2.6.17",
 >>>>>>> 968c3d0 (npm: 2.6.17)
+=======
+  "version": "2.6.18",
+>>>>>>> 6fb7660 (use remappings and mpn-style paths)
   "description": "Yield v2 utility contracts",
   "author": "Yield Inc.",
   "files": [
